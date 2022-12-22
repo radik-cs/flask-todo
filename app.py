@@ -32,6 +32,25 @@ def add():
         return redirect(url_for("index"))
 
 
+@app.route("/update/<int:todo_id>")
+def update():
+        # update an item
+        todo = Todo.query.filter_by(id=todo_id).first()
+        todo.complete = not todo.complete
+        db.session.commit()
+        return redirect(url_for("index"))
+
+
+
+
+@app.route("/update/<int:todo_id>")
+def update():
+        # update an item
+        todo = Todo.query.filter_by(id=todo_id).first()
+        todo.complete = not todo.complete
+        db.session.commit()
+        return redirect(url_for("index"))
+
 
 
 @app.route('/about')
