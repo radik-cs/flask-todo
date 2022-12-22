@@ -33,7 +33,7 @@ def add():
 
 
 @app.route("/update/<int:todo_id>")
-def update():
+def update(todo_id):
         # update an item
         todo = Todo.query.filter_by(id=todo_id).first()
         todo.complete = not todo.complete
@@ -43,11 +43,11 @@ def update():
 
 
 
-@app.route("/update/<int:todo_id>")
-def update():
-        # update an item
+@app.route("/delete/<int:todo_id>")
+def delete(todo_id):
+        # delete an item
         todo = Todo.query.filter_by(id=todo_id).first()
-        todo.complete = not todo.complete
+        db.session.delete(todo)
         db.session.commit()
         return redirect(url_for("index"))
 
